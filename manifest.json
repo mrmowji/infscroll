@@ -1,0 +1,28 @@
+{
+  "name": "Infscroll",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "",
+  "homepage_url": "https://github.com/mrmowji/infscroll",
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": "images/icon38.png"
+  },
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "permissions": ["tabs", "contextMenus", "http://*/*", "https://*/*"],
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
