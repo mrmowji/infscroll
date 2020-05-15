@@ -73,15 +73,14 @@ function prepareScrolling(message) {
 function scroll(direction, numberOfRuns, element) {
   let runsCounter = 0;
 
-  // interval to scroll again
-  interval = setInterval(() => {
+  let move = function() {
     // get current height
     elementPreviousHeight = element.scrollHeight;
 
     if (direction === "up") {
-      element.scrollTop -= element.scrollHeight;
+      element.scrollTop = 0;
     } else {
-      element.scrollTop += element.scrollHeight;
+      element.scrollTop = element.scrollHeight - element.clientHeight;
     }
 
     // check if this isn't getting taller
@@ -101,6 +100,12 @@ function scroll(direction, numberOfRuns, element) {
     if (runsCounter >= numberOfRuns || isStopped === true) {
       reset();
     }
+  }
+
+  move();
+  // interval to scroll again
+  interval = setInterval(() => {
+    move();
   }, INTERVAL_DELAY);
 }
 
